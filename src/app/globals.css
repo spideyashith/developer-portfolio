@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-obsidian: #0b0f19;
+  --color-obsidian-light: #161e30;
+  --color-cyan: #00f3ff;
+  --color-cyan-glow: rgba(0, 243, 255, 0.4);
+  --color-plasma-blue: #0066ff;
+  --color-alert-amber: #ffb000;
+  
+  --font-sans: var(--font-rajdhani);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: var(--color-obsidian);
+  --foreground: #ededed;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-obsidian); }
+::-webkit-scrollbar-thumb { background: var(--color-plasma-blue); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-cyan); }
+
+/* =============================================
+   KEYFRAME ANIMATIONS
+   ============================================= */
+
+/* Hazard/Alert panel strips */
+@keyframes pan {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Bio card scanline overlay */
+@keyframes scan {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0%); }
+}
+
+/* ---- METEOR SHOWER ---- */
+@keyframes meteor {
+  0%   { transform: translateX(0) translateY(0) rotate(215deg); opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translateX(-600px) translateY(600px) rotate(215deg); opacity: 0; }
+}
+
+/* ---- SPACESHIP DRIFT ---- */
+@keyframes shipDrift {
+  0%   { transform: translateX(-150px) translateY(0px); opacity: 0; }
+  5%   { opacity: 0.6; }
+  85%  { opacity: 0.5; }
+  100% { transform: translateX(110vw) translateY(-60px); opacity: 0; }
+}
+
+@keyframes shipDrift2 {
+  0%   { transform: translateX(-200px) translateY(0px); opacity: 0; }
+  5%   { opacity: 0.4; }
+  85%  { opacity: 0.3; }
+  100% { transform: translateX(110vw) translateY(80px); opacity: 0; }
+}
+
+/* ---- ALIEN PULSE ---- */
+@keyframes alienPulse {
+  0%,100% { opacity: 0.04; }
+  50%      { opacity: 0.08; }
+}
+
+/* ---- HEX SHATTER ---- */
+@keyframes hexShatter {
+  0%    { transform: scale(1) rotate(0deg); opacity: 1; }
+  60%   { opacity: 0.6; }
+  100%  { transform: scale(4) rotate(var(--rot, 30deg)) translate(var(--tx, 50px), var(--ty, -80px)); opacity: 0; }
+}
+
+/* ---- SECTION SCAN LINE ---- */
+@keyframes sectionScan {
+  0%   { top: 0%; opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ---- STAR / PLANET ORBIT ---- */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--orbit-r, 8px)) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(var(--orbit-r, 8px)) rotate(-360deg); }
+}
+
+@keyframes planetGlow {
+  0%,100% { box-shadow: 0 0 20px var(--planet-color, #00f3ff), 0 0 40px var(--planet-color, #00f3ff)40; }
+  50%     { box-shadow: 0 0 40px var(--planet-color, #00f3ff), 0 0 80px var(--planet-color, #00f3ff)80; }
+}
+
+@keyframes floatUp {
+  0%,100% { transform: translateY(0px); }
+  50%     { transform: translateY(-10px); }
+}
+
+@keyframes warpFlicker {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.7; }
+}
+
+
